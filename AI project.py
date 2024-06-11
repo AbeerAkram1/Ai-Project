@@ -23,3 +23,13 @@ df.dropna(inplace=True)
   df['Review Count']=df['Review Count'].str.replace(',','').astype(int)
 df['Votes']=df['Votes'].str.replace(',','').astype(int)
 df['Year']=df['Year'].astype(int)
+
+top_rating=df[['Rating','Title']].sort_values(ascending=False ,by='Rating').head(10)
+sns.barplot(data=top_rating,y='Title' ,x='Rating' )
+plt.title('TOP 10 RATING MOVIES')
+plt.show()
+top_votes=df[['Votes','Title']].sort_values(ascending=False, by='Votes').head(10)
+
+sns.barplot(data=top_votes  ,x='Votes' ,y='Title')
+plt.title('TOP 10 HIGHEST VOTES MOVIES')
+plt.show()
