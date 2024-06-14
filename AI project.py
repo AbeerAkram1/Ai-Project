@@ -33,3 +33,14 @@ top_votes=df[['Votes','Title']].sort_values(ascending=False, by='Votes').head(10
 sns.barplot(data=top_votes  ,x='Votes' ,y='Title')
 plt.title('TOP 10 HIGHEST VOTES MOVIES')
 plt.show()
+most_review = df[['Review Count' ,'Title']].sort_values(ascending=False,
+  by='Review Count').head(10)
+sns.barplot(data=most_review  ,x='Review Count' ,y='Title')
+plt.title('TOP 10 HIGHEST REVIEW MOVIES¶')
+plt.show()
+year_most_release_movie=df.groupby(['Year'])['Title'].count().sort_values(ascending=False).reset_index().head(10)
+year_most_release_movie.rename({"Title":'Count movies'} ,axis=1 ,inplace=True)
+
+sns.barplot(data=year_most_release_movie ,x='Year' ,y='Count movies')
+plt.title('MOST RELEASED MOVIES IN YEAR')
+plt.show()
