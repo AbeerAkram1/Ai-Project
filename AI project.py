@@ -51,3 +51,19 @@ bar=sns.barplot(highest_meatscore ,x='Metascore' ,y='Title')
 plt.bar_label(bar.containers[0])
 plt.title('Movies with Highest Metascore')
 plt.show()
+
+genre=df.pivot_table(index='Genre' ,columns='Year' ,values='Rating').fillna(0 ).astype(int)
+
+plt.figure(figsize=(10,10))
+px.imshow(genre )
+df.head()
+top_direc=df.groupby('Director')['Title'].count().sort_values(ascending=False).reset_index().head(20)
+top_direc.rename({'Title':'Movie_count'} ,axis=1 ,inplace=True )
+
+plt.figure(figsize=(10 , 7))
+bar=sns.barplot(top_direc ,y='Director' ,x='Movie_count' ,orient='h')
+
+plt.bar_label(bar.containers[0])
+plt.title('TOP 20 DIRECTOR WICH MAKE MOST MOVIES')
+
+plt.show()
